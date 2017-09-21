@@ -7,8 +7,11 @@
     <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
     <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
     <!-- JavaScript -->
     <script src="app.js"></script>
+    <script src="search.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="/style.css">
 
@@ -92,6 +95,18 @@
   </div>
     <button ng-click="ctrl.showText()">turn texxt on</button>
 
+    <!-- <script src="search.js"></script> -->
+    <div id="buttons">
+      <label> <input id="query" value='' type="text"/><button id="search-button" onclick="search()">Search</button></label>
+    </div>
+    <div id="search-container">
+    </div>
+    <!-- <script src="search.js"></script> -->
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+
+    <!-- <script src="../controllers/auth.js"></script> -->
+    <!-- <script src="../controllers/search.js"></script> -->
+    <!-- <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> -->
     <!-- //NG-IF TEXT TESET// -->
 
     <!-- <div class="span6">

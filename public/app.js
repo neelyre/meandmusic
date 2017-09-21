@@ -1,8 +1,11 @@
+
 const app = angular.module('soundtrack', []);
 
 app.controller('MainController', ['$http', function($http){
   console.log('this is happening');
   const controller = this;
+  this.url = 'https://musicandme-backend.herokuapp.com';
+  // this.url = 'http://localhost:3000';
 
   this.login = function(userPass) {
   console.log(userPass);
@@ -210,5 +213,8 @@ location.reload();
 }
 
 // ============END LOGIN METHODS=========
+
+
+// After the API loads, call a function to enable the search box.
 
 }]);
