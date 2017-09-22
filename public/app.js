@@ -156,7 +156,7 @@ $http({
     console.log(response);
   controller.user = response.data;
 }, function(error){
-  console.log(error, 'error from review edit');
+  console.log(error, 'error from publish edit');
 })
 };
 
