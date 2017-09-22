@@ -29,7 +29,17 @@
 
           <div ng-repeat="user in ctrl.users">
             <h1>{{ user.username }}</h1>
-          </div
+          </div>
+
+
+          <!-- <div class="editform" ng-if="displayEditUserData"> -->
+            <p>Edit User data</p>
+                  <form ng-submit="ctrl.publishUser(userPass)">
+             <input type="text" ng-model="userPass.instruments" placeholder="instruments you play"/>
+             <input type="text" ng-model="userPass.genre" placeholder="favortie genre of music"/>
+             <input type="submit"/>
+           </form>
+         </div>
 
 
 

@@ -4,8 +4,8 @@ const app = angular.module('soundtrack', []);
 app.controller('MainController', ['$http', function($http){
   console.log('this is happening');
   const controller = this;
-  this.url = 'https://musicandme-backend.herokuapp.com';
-  // this.url = 'http://localhost:3000';
+  // this.url = 'https://musicandme-backend.herokuapp.com';
+  this.url = 'http://localhost:3000';
 
   this.login = function(userPass) {
   console.log(userPass);
@@ -15,6 +15,7 @@ app.controller('MainController', ['$http', function($http){
   this.test = "hi"
   this.displayLogin = true;
   this.displayRegistration = false;
+  this.displayEditUserData = true;
 
   this.instrumentInclude = function(){
 		this.includePath = 'partials/partial1.html';
@@ -67,6 +68,10 @@ app.controller('MainController', ['$http', function($http){
     this.displayLogOut = false;
   };
 
+  this.editUserInfo = function(){
+
+  }
+
 this.testdisplay = true;
 this.hideText = function(){
   this.testdisplay = false;
@@ -74,11 +79,6 @@ this.hideText = function(){
 this.showText = function(){
   this.testdisplay = true;
 };
-
-
-
-//discogs callback//
-
 
 
   // this.includePath = 'partials/partial1.html';
@@ -92,56 +92,6 @@ this.showText = function(){
 
   console.log('hi');
 
-
-this.addReview = function(){
-  $http({
-            method: 'post',
-            url: this.url + '/reviews/',
-            data: {
-              user_id: controller.user.id,
-              comment_text: controller.newText
-            }
-          }).then(function(response){
-            console.log(response);
-        }, function(){
-            console.log('error');
-        });
-    }
-
-    this.editReview = function(id){
-      $http({
-        method: 'get',
-        url: this.url + '/reviews/' + id
-      }).then(function(response){
-        console.log(controller.currentReview);
-      }, function(error){
-        console.log(error,'review error')
-      })
-    };
-
-    this.publishReviewEdit = function(){
-    $http({
-      method: 'put',
-      url: this.url + '/reviews/' + this.currentReview.id,
-      data: this.currentReview
-    }).then(function(response){
-      controller.hideAllCenterDivs();
-      controller.displaySearchForm = true;
-    }, function(error){
-      console.log(error, 'error from review edit');
-    })
-  };
-
-    this.deleteReview = function(id){
-  $http({
-    method: 'delete',
-    url: this.url + '/reviews/' + id
-  }).then(function(response){
-    console.log(response);
-  }, function(error){
-    console.log(error, 'error from delete route');
-  })
-};
 
 
 
@@ -179,8 +129,47 @@ $http({
   }.bind(this));
   controller.hideAllLogin();
   controller.displayLogOut = true;
+  controller.displayEditUserData = true;
 };
 
+this.editUser = function(id){
+  $http({
+    method: 'GET',
+    url: this.url + '/users/' + id
+  }).then(function(response){
+    controller.currentUser = response.data;
+    console.log(controller.currentUser);
+  }, function(error){
+    console.log(error,'review error')
+  })
+};
+
+this.publishUser = function(userPass){
+$http({
+  method: 'PUT',
+  headers: {
+    Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+  },
+  url: this.url + '/users/' + this.user.id,
+  data: { user: { instruments: userPass.instruments, genre: userPass.genre }},
+}).then(function(response){
+    console.log(response);
+  controller.user = response.data;
+}, function(error){
+  console.log(error, 'error from review edit');
+})
+};
+
+this.deleteUser = function(id){
+$http({
+method: 'delete',
+url: this.url + '/users/' + id
+}).then(function(response){
+console.log(response);
+}, function(error){
+console.log(error, 'error from delete route');
+})
+};
 
 
 
@@ -209,7 +198,8 @@ this.logout = function() {
 localStorage.clear('token');
 location.reload();
 // this.hideAllLogin();
-// this.displayLogin = true;
+this.displayLogin = true;
+controller.displayEditUserData = false;
 }
 
 // ============END LOGIN METHODS=========
