@@ -7,14 +7,14 @@
     <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
     <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <!-- <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> -->
     <!-- JavaScript -->
     <script src="app.js"></script>
     <script src="search.js"></script>
     <script src="auth.js"></script>
     <!-- CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"></link>
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="/style.css">
 
@@ -39,7 +39,8 @@
         </form>
       </div>
         <div class="logged" ng-if="ctrl.displaylogged">
-        <p>Logged in username: {{ ctrl.user.username }} </p>
+        <p>Logged in: {{ ctrl.user.username }} </p>
+        <p>{{ ctrl.user.username }} likes {{ ctrl.user.genre }} music and plays the {{ ctrl.user.instruments }}
       </div>
       </div>
     </div>

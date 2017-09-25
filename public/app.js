@@ -4,8 +4,8 @@ const app = angular.module('soundtrack', []);
 app.controller('MainController', ['$http', function($http){
   console.log('this is happening');
   const controller = this;
-  this.url = 'https://musicandme-backend.herokuapp.com';
-  // this.url = 'http://localhost:3000';
+  // this.url = 'https://musicandme-backend.herokuapp.com';
+  this.url = 'http://localhost:3000';
 
   this.login = function(userPass) {
   console.log(userPass);
@@ -208,7 +208,7 @@ $http({
 
 };
 
-this.editUser = function(id){
+this.editUser = function(userPass){
   $http({
     method: 'GET',
     url: this.url + '/users/' + id
@@ -237,10 +237,13 @@ $http({
 })
 };
 
-this.deleteUser = function(id){
+this.deleteUser = function(userpass){
 $http({
 method: 'DELETE',
-url: this.url + '/users/' + id
+headers: {
+  Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+},
+url: this.url + '/users/' + this.user.id
 }).then(function(response){
 console.log(response);
 }, function(error){
