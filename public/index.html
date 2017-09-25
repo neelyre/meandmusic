@@ -22,38 +22,50 @@
 
   <body ng-controller="MainController as ctrl">
 
-        {{ ctrl.test }}
-
-          <p>Logged in username: {{ ctrl.user.username }} </p>
-
-          <h4 ng-click="ctrl.getUsers()">Click to see secret stuff</h4>
-
-          <div> {{ ctrl.error }}</div>
-
-          <div ng-repeat="user in ctrl.users">
-            <h1>{{ user.username }}</h1>
-          </div>
-
-
-          <!-- <div class="editform" ng-if="displayEditUserData"> -->
-            <p>Edit User data</p>
-                  <form ng-submit="ctrl.publishUser(userPass)">
-             <input type="text" ng-model="userPass.instruments" placeholder="instruments you play"/>
-             <input type="text" ng-model="userPass.genre" placeholder="favortie genre of music"/>
-             <input type="submit"/>
-           </form>
-         </div>
-
-
-
-<div class="login" ng-if="ctrl.displayLogin">
+<!-- 'hi' test -->
+<!-- {{ ctrl.test }} -->
+<div class="container">
+<img class"musicnotes" src = "/partials/single_instruments/images/headerimage.png"></img>
+<!-- FIRST ROW -->
+  <div class="row">
+    <!-- FIRST COLUMN -->
+    <div class="col-md-4 col-md-offset-8">
+      <div class="login" ng-if="ctrl.displayLogin">
         <form ng-submit="ctrl.login(userPass)">
-   <input type="text" ng-model="userPass.username" placeholder="username"/>
-   <input type="password" ng-model="userPass.password" placeholder="password"/>
-   <input type="submit"/>
- </form>
- <p class="noAccount">Don't have an account? </br></p><p class="createAccount"><a href="#" ng-click="ctrl.displayRegistrationDiv();">Create one now</a></p>
- </div>
+          <p>Log in</p>
+          <input type="text" ng-model="userPass.username" placeholder="username"/>
+          <input type="password" ng-model="userPass.password" placeholder="password"/>
+          <input type="submit"/>
+        </form>
+      </div>
+        <div class="logged" ng-if="ctrl.displaylogged">
+        <p>Logged in username: {{ ctrl.user.username }} </p>
+      </div>
+      </div>
+    </div>
+      <!-- SECOND COLUMN -->
+      <div class="row">
+          <div class="col-xs-8 col-sm-6">
+            <p class="noAccount" ng-if="ctrl.noAccount">Don't have an account? </br></p>
+            <p class="createAccount" ng-if="ctrl.createAccount"><a href="#" ng-click="ctrl.displayRegistrationDiv();">Create one now</a></p>
+
+        <!-- <h3 ng-if="ctrl.displayLogOut">Hello, {{ctrl.user.first_name}}</h3> -->
+        <!-- <div class="editData"> -->
+        <p class="editData" ng-if="ctrl.editData"><a href="#" ng-click="ctrl.editUserInfo();">Edit your info</a></p>
+        <div class="editform" ng-if="ctrl.displayEditUserData">
+          <p>Edit User data</p>
+                <form ng-submit="ctrl.publishUser(userPass)">
+           <input type="text" ng-model="userPass.instruments" placeholder="instruments you play"/>
+           <input type="text" ng-model="userPass.genre" placeholder="favortie genre of music"/>
+           <input type="submit"/>
+         </form>
+       </div>
+        <button class="logout" ng-click="ctrl.logout();" ng-if="ctrl.displayLogOut">Log Out</button>
+        <p>
+        <p class="deleteuser" ng-if="ctrl.displayDeleteAccount"><a href="#" ng-click="ctrl.deleteUser();">Delete your account</a></p>
+        </div>
+      </div>
+    </row>
 
 
  <div class="register" ng-if="ctrl.displayRegistration">
@@ -69,57 +81,63 @@
 <input type="submit"/>
 </form>
 </div>
-
-<h3 ng-if="ctrl.displayLogOut">Hello, {{ctrl.user.first_name}}</h3>
-<button class="logout" ng-click="ctrl.logout();" ng-if="ctrl.displayLogOut">Log Out</button>
-
-
-
-
-
-
-<div class="container">
-
-
-<h1>Welcome to Learn about music</h1>
-
-<h3> here you can search our database to find out what type of instrument is common to a music genre, current albums and artists of music style and even access to videos about playing instruments in that field.</h3>
-
-<h3>to get started, select if you want to search by instrument or by music genre</h3>
-
-
-  <div class="leftcolumn">
-<button ng-click="ctrl.instrumentInclude()">Instrument</button>
 </div>
-  <div class="rightcolumn">
-<button ng-click="ctrl.genreInclude()">Genre</button>
+
+    <!-- END LOGIN -->
+
+  <div class="container">
+    <div id="header">
+<h1>Welcome to Me and My music</h1>
+<h4> Here you can search our database to find out what type of instrument is common to a music genre, current albums and artists of music style and even access to videos about playing instruments in that field.</h4>
 </div>
+</div>
+
+
+  <div class="container">
+        <div class="row">
+<div class="leftcolumn" class="col-xs-6">
+<h4>To get started, select if you want to search by instrument or by music genre</h4>
+</div>
+
+
+<div class="rightcolumn" class="col-xs-6">
+<button class="btn btn-success" ng-click="ctrl.instrumentInclude()">Instrument</button>
+<button  class="btn btn-success" ng-click="ctrl.genreInclude()">Genre</button>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-md-6" class="leftlowercolumn">
+    <div ng-include="ctrl.includePartialPath"></div>
+  </div>
+
+  <div class="col-md-6" class="rightlowercolumn" >
+  <div ng-include="ctrl.includeinstrumentPath"></div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-xs-6 col-md-6">
 <div ng-include="ctrl.includePath"></div>
+</div>
+</div>
+</div>
 
-<p>create test.</p>
-<textarea rows="6" cols="50" ng-model="ctrl.newReviewText"></textarea>
-<button class="reviewButton" ng-click="ctrl.addReviewToMovie()">Add Review</button>
+
+
 
 
 <!-- //NG-IF TEXT TESET// -->
-<div ng-if="ctrl.testdisplay">
+<!-- <div ng-if="ctrl.testdisplay">
   <p> this display is on if test.display is set to true.<p>
     <button ng-click="ctrl.hideText()">turn texxt off</button>
   </div>
-    <button ng-click="ctrl.showText()">turn texxt on</button>
+    <button ng-click="ctrl.showText()">turn texxt on</button> -->
 
-    <!-- <script src="search.js"></script> -->
-    <div id="buttons">
-      <label> <input id="query" value='' type="text"/><button id="search-button" onclick="search()">Search</button></label>
-    </div>
-    <div id="search-container">
-    </div>
-    <!-- <script src="search.js"></script> -->
-    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 
     <!-- <script src="../controllers/auth.js"></script> -->
     <!-- <script src="../controllers/search.js"></script> -->
-    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+    <!-- <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> -->
     <!-- //NG-IF TEXT TESET// -->
 
     <!-- <div class="span6">

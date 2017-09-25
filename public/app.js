@@ -4,8 +4,8 @@ const app = angular.module('soundtrack', []);
 app.controller('MainController', ['$http', function($http){
   console.log('this is happening');
   const controller = this;
-  this.url = 'https://musicandme-backend.herokuapp.com';
-  // this.url = 'http://localhost:3000';
+  // this.url = 'https://musicandme-backend.herokuapp.com';
+  this.url = 'http://localhost:3000';
 
   this.login = function(userPass) {
   console.log(userPass);
@@ -15,34 +15,60 @@ app.controller('MainController', ['$http', function($http){
   this.test = "hi"
   this.displayLogin = true;
   this.displayRegistration = false;
-  this.displayEditUserData = true;
+  this.displayEditUserData = false;
+  this.displaylogged = false;
+  this.displayDeleteAccount = false;
+  this.noAccount = true
+  this.editData = false;
+  this.createAccount = true;
 
   this.instrumentInclude = function(){
-		this.includePath = 'partials/partial1.html';
+		this.includePartialPath = 'partials/partial1.html';
   }
   this.genreInclude = function(){
-    this.includePath = 'partials/partial2.html';
+    this.includePartialPath = 'partials/partial2.html';
   }
   this.listWoodwinds = function(){
-    this.includePath = 'partials/woodwinds.html';
+    this.includeinstrumentPath = 'partials/woodwinds.html';
   }
   this.listStrings = function(){
-    this.includePath = 'partials/strings.html';
+    this.includeinstrumentPath = 'partials/strings.html';
   }
   this.listBrass = function(){
-    this.includePath = 'partials/brass.html';
+    this.includeinstrumentPath = 'partials/brass.html';
   }
   this.listPercussion = function(){
-    this.includePath = 'partials/percussion.html';
+    this.includeinstrumentPath = 'partials/percussion.html';
   }
   this.listOther = function(){
-    this.includePath = 'partials/other.html';
+    this.includeinstrumentPath = 'partials/other.html';
   }
   this.listJazz = function(){
-    this.includePath = 'partials/jazz.html';
+    this.includeinstrumentPath = 'partials/Jazz.html';
   }
-  this.piano = function(){
-    this.includePath = 'partials/single_instruments/piano.html';
+  this.listRock = function(){
+    this.includeinstrumentPath = 'partials/Rock.html';
+  }
+  this.listBlues = function(){
+    this.includeinstrumentPath = 'partials/blues.html';
+  }
+  this.listClassical = function(){
+    this.includeinstrumentPath = 'partials/classical.html';
+  }
+  this.accordian = function(){
+    this.includePath = 'partials/single_instruments/accordian.html';
+  }
+  this.banjo = function(){
+    this.includePath = 'partials/single_instruments/banjo.html';
+  }
+  this.bassoon = function(){
+    this.includePath = 'partials/single_instruments/bassoon.html';
+  }
+  this.cello = function(){
+    this.includePath = 'partials/single_instruments/cello.html';
+  }
+  this.clarinet = function(){
+    this.includePath = 'partials/single_instruments/clarinet.html';
   }
   this.double_bass = function(){
     this.includePath = 'partials/single_instruments/double_bass.html';
@@ -50,26 +76,77 @@ app.controller('MainController', ['$http', function($http){
   this.drums = function(){
     this.includePath = 'partials/single_instruments/drums.html';
   }
-  this.guitar = function(){
-    this.includePath = 'partials/single_instruments/guitar.html';
+  this.flute = function(){
+    this.includePath = 'partials/single_instruments/flute.html';
   }
-  this.saxophonse = function(){
+  this.french_horn = function(){
+    this.includePath = 'partials/single_instruments/french_horn.html';
+  }
+  this.harmonica = function(){
+    this.includePath = 'partials/single_instruments/harmonica.html';
+  }
+  this.harp = function(){
+    this.includePath = 'partials/single_instruments/harp.html';
+  }
+  this.mandolin = function(){
+    this.includePath = 'partials/single_instruments/mandolin.html';
+  }
+  this.oboe = function(){
+    this.includePath = 'partials/single_instruments/oboe.html';
+  }
+  this.piano = function(){
+    this.includePath = 'partials/single_instruments/piano.html';
+  }
+  this.saxophone = function(){
     this.includePath = 'partials/single_instruments/saxophone.html';
+  }
+  this.steeldrums = function(){
+    this.includePath = 'partials/single_instruments/steeldrums.html';
+  }
+  this.timpani = function(){
+    this.includePath = 'partials/single_instruments/timpani.html';
+  }
+  this.trombone = function(){
+    this.includePath = 'partials/single_instruments/trombone.html';
+  }
+  this.trumpet = function(){
+    this.includePath = 'partials/single_instruments/trumpet.html';
+  }
+  this.tuba = function(){
+    this.includePath = 'partials/single_instruments/tuba.html';
+  }
+  this.viola = function(){
+    this.includePath = 'partials/single_instruments/viola.html';
+  }
+  this.violin = function(){
+    this.includePath = 'partials/single_instruments/violin.html';
+  }
+  this.xylophone = function(){
+    this.includePath = 'partials/single_instruments/xylophone.html';
   }
 
   this.displayRegistrationDiv = function(){
   this.displayRegistration = true;
   this.displayLogin = false;
+  this.createAccount = false;
+  this.noAccount = false;
 };
 
   this.hideAllLogin = function(){
     this.displayLogin = false;
     this.displayRegistration = false;
-    this.displayLogOut = false;
+    this.displayLogOut = true;
+    this.displaylogged = true;
+    this.noAccount = false;
+    this.editData = true;
+    this.createAccount = false;
+    this.displayDeleteAccount = true;
   };
 
   this.editUserInfo = function(){
-
+    console.log('edituser');
+    this.displayEditUserData = true;
+    this.editData = false;
   }
 
 this.testdisplay = true;
@@ -110,7 +187,6 @@ this.showText = function(){
        controller.user = response.data;
        console.log(controller.user,'logged user');
        controller.hideAllLogin();
-       controller.displayLogOut = true;
 
      })
    };
@@ -128,8 +204,8 @@ $http({
   localStorage.setItem('token', JSON.stringify(response.data.token));
   }.bind(this));
   controller.hideAllLogin();
-  controller.displayLogOut = true;
-  controller.displayEditUserData = true;
+
+
 };
 
 this.editUser = function(id){
@@ -155,6 +231,7 @@ $http({
 }).then(function(response){
     console.log(response);
   controller.user = response.data;
+  controller.displayEditUserData = false;
 }, function(error){
   console.log(error, 'error from publish edit');
 })
@@ -162,7 +239,7 @@ $http({
 
 this.deleteUser = function(id){
 $http({
-method: 'delete',
+method: 'DELETE',
 url: this.url + '/users/' + id
 }).then(function(response){
 console.log(response);
@@ -199,7 +276,8 @@ localStorage.clear('token');
 location.reload();
 // this.hideAllLogin();
 this.displayLogin = true;
-controller.displayEditUserData = false;
+this.displayDeleteAccount = false;
+// controller.displayEditUserData = false;
 }
 
 // ============END LOGIN METHODS=========
