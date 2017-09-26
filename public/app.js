@@ -4,7 +4,7 @@ const app = angular.module('soundtrack', []);
 app.controller('MainController', ['$http', function($http){
   console.log('this is happening');
   const controller = this;
-  // this.url = 'https://musicandme-backend.herokuapp.com';
+  // this.url = 'http://musicandme-backend.herokuapp.com';
   this.url = 'http://localhost:3000';
 
   this.login = function(userPass) {
@@ -143,6 +143,19 @@ app.controller('MainController', ['$http', function($http){
     this.displayDeleteAccount = true;
   };
 
+  // this.showLogin = function(){
+  //   this.displayLogin = true;
+  //   this.displayRegistration = false;
+  //   this.displayLogOut = false;
+  //   this.displaylogged = false;
+  //   this.noAccount = true;
+  //   this.editData = false;
+  //   this.createAccount = true;
+  //   this.displayDeleteAccount = false;
+  // };
+
+
+
   this.editUserInfo = function(){
     console.log('edituser');
     this.displayEditUserData = true;
@@ -168,6 +181,39 @@ this.showText = function(){
   // this.url = 'http://localhost:3000';
 
   console.log('hi');
+  //
+  // this.showInstruments = function() {
+  //   $http({
+  //     url: this.url + '/instruments'
+  //     method: 'GET'
+  //   }).then(function(response) {
+  //     console.log(response);
+  //     if (response.data.status == 401) {
+  //         this.error = "Unauthorized";
+  //     } else {
+  //         for (let i = 0; i < this.instruments.length; i++){
+  //       this.instruments = response.data;
+  //     }
+  //   }.bind(this));
+  // }
+
+
+
+  this.getInstrument = function(id) {
+    $http({
+      url: this.url + '/instruments/' + id,
+      method: 'GET'
+
+    }).then(function(response) {
+      console.log(response);
+      if (response.data.status == 401) {
+          this.error = "Unauthorized";
+      } else {
+        this.instruments = response.data;
+      }
+    }.bind(this));
+  }
+
 
 
 
@@ -185,6 +231,7 @@ this.showText = function(){
        data: { user: { username: userPass.username, password: userPass.password, first_name: userPass.first_name, last_name: userPass.last_name, instruments: userPass.instruments, genre: userPass.genre }},
      }).then(function(response) {
        controller.user = response.data;
+       controller.showLogin();
        console.log(controller.user,'logged user');
        controller.hideAllLogin();
 
