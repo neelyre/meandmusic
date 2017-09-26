@@ -4,8 +4,8 @@ const app = angular.module('soundtrack', []);
 app.controller('MainController', ['$http', function($http){
   console.log('this is happening');
   const controller = this;
-  // this.url = 'https://musicandme-backend.herokuapp.com';
-  this.url = 'http://localhost:3000';
+  this.url = 'https://musicandme-backend.herokuapp.com';
+  // this.url = 'http://localhost:3000';
 
   this.login = function(userPass) {
   console.log(userPass);
