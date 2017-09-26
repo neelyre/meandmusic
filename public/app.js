@@ -4,7 +4,7 @@ const app = angular.module('soundtrack', []);
 app.controller('MainController', ['$http', function($http){
   console.log('this is happening');
   const controller = this;
-  // this.url = 'http://musicandme-backend.herokuapp.com';
+  // this.url = 'https://musicandme-backend.herokuapp.com';
   this.url = 'http://localhost:3000';
 
   this.login = function(userPass) {
@@ -143,16 +143,16 @@ app.controller('MainController', ['$http', function($http){
     this.displayDeleteAccount = true;
   };
 
-  // this.showLogin = function(){
-  //   this.displayLogin = true;
-  //   this.displayRegistration = false;
-  //   this.displayLogOut = false;
-  //   this.displaylogged = false;
-  //   this.noAccount = true;
-  //   this.editData = false;
-  //   this.createAccount = true;
-  //   this.displayDeleteAccount = false;
-  // };
+  this.showLogin = function(){
+    this.displayLogin = true;
+    this.displayRegistration = false;
+    this.displayLogOut = false;
+    this.displaylogged = false;
+    this.noAccount = true;
+    this.editData = false;
+    this.createAccount = true;
+    this.displayDeleteAccount = false;
+  };
 
 
 
@@ -181,7 +181,10 @@ this.showText = function(){
   // this.url = 'http://localhost:3000';
 
   console.log('hi');
-  //
+
+
+  // ============INSTRUMENT METHODS BELOW=========
+
   this.showInstruments = function() {
     $http({
       url: this.url + '/instruments',
@@ -213,6 +216,55 @@ this.showText = function(){
     }.bind(this));
   }
 
+  // this.createInstrument = function(userPass) {
+  //  //  this.displayLogout = true;
+  //   console.log('creating instrument');
+  //   $http({
+  //     method: 'POST',
+  //     url: this.url + '/instruments/',
+  //     data: { instrument: { name: userPass.name, description: userPass.description, image: userPass.image }},
+  //   }).then(function(response) {
+  //     this.instruments = response.data;
+  //   }
+  // }.bind(this));
+  // };
+  //
+  // this.editInstrument = function(id){
+  //   $http({
+  //     method: 'GET',
+  //     url: this.url + '/instruments/' + id,
+  //   }).then(function(response){
+  //     controller.currentInstrument = response.data;
+  //     console.log(controller.currentInstrument);
+  //   }, function(error){
+  //     console.log(error,'review error')
+  //   })
+  // };
+  //
+  // this.publishUser = function(id){
+  // $http({
+  //   method: 'PUT',
+  //   url: this.url + '/instruments/' + this.instrument.id,
+  //   data: { instrument: { name: userPass.name, description: userPass.description, image: userPass.image }},
+  // }).then(function(response){
+  //     console.log(response);
+  //   controller.instrument = response.data;
+  // }, function(error){
+  //   console.log(error, 'error from publish edit');
+  // })
+  // };
+
+  this.deleteUser = function(id){
+  $http({
+  method: 'DELETE',
+  url: this.url + '/instruments/' + this.instrument.id
+  }).then(function(response){
+  console.log(response);
+  }, function(error){
+  console.log(error, 'error from delete route');
+  })
+  };
+
 
 
 
@@ -230,9 +282,10 @@ this.showText = function(){
        data: { user: { username: userPass.username, password: userPass.password, first_name: userPass.first_name, last_name: userPass.last_name, instruments: userPass.instruments, genre: userPass.genre }},
      }).then(function(response) {
        controller.user = response.data;
-       controller.showLogin();
+      //  controller.showLogin();
+      // localStorage.setItem('token', JSON.stringify(response.data.token));
        console.log(controller.user,'logged user');
-       controller.hideAllLogin();
+       controller.showLogin();
 
      })
    };
@@ -278,6 +331,7 @@ $http({
     console.log(response);
   controller.user = response.data;
   controller.displayEditUserData = false;
+  controller.editData = true;
 }, function(error){
   console.log(error, 'error from publish edit');
 })
