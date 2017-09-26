@@ -123,9 +123,9 @@
 <div> {{ ctrl.instruments.description }}</div>
 <img src="{{ ctrl.instruments.image }}">
 </div>
-<li ng-repeat="instrument in instruments">
-{{ ctrl.instruments.name }}
-</li>
+<ul ng-repeat="instrument in ctrl.instrumentslist">
+{{ instrument.name }}
+</ul>
 </div>
 
 
