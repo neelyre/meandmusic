@@ -25,6 +25,8 @@
 <!-- 'hi' test -->
 <!-- {{ ctrl.test }} -->
 <div class="container">
+  <div class="row">
+    <div class="col-md-6" class="leftuppercolumn">
 <img class"musicnotes" src = "/partials/single_instruments/images/headerimage.png"></img>
 <!-- FIRST ROW -->
   <div class="row">
@@ -86,10 +88,12 @@
 
     <!-- END LOGIN -->
 
-  <div class="container">
+      <div class="col-md-6" class="rightuppercolumn">
     <div id="header">
 <h1>Welcome to Me and My music</h1>
 <h4> Here you can search our database to find out what type of instrument is common to a music genre, current albums and artists of music style and even access to videos about playing instruments in that field.</h4>
+</div>
+</div>
 </div>
 </div>
 
@@ -118,11 +122,15 @@
 </div>
 
 <div class="row">
-<div class="col-xs-6 col-md-6">
+<div class="col-sm-8">
 <div> {{ ctrl.instruments.name }}</div>
 <div> {{ ctrl.instruments.description }}</div>
+<div ng-if="ctrl.displayYoutubePath">
+<a href="{{ ctrl.instruments.youtube}}">Click here to watch videos about playing this instrument.</a>
+</div>
 <img src="{{ ctrl.instruments.image }}">
 </div>
+<div class="col-sm-4">
 <ul ng-repeat="instrument in ctrl.instrumentslist">
 {{ instrument.name }}
 </ul>

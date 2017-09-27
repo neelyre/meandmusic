@@ -4,8 +4,8 @@ const app = angular.module('soundtrack', []);
 app.controller('MainController', ['$http', function($http){
   console.log('this is happening');
   const controller = this;
-  this.url = 'https://musicandme-backend.herokuapp.com';
-  // this.url = 'http://localhost:3000';
+  // this.url = 'https://musicandme-backend.herokuapp.com';
+  this.url = 'http://localhost:3000';
 
   this.login = function(userPass) {
   console.log(userPass);
@@ -21,6 +21,7 @@ app.controller('MainController', ['$http', function($http){
   this.noAccount = true
   this.editData = false;
   this.createAccount = true;
+  this.displayYoutubePath = false;
 
   this.instrumentInclude = function(){
 		this.includePartialPath = 'partials/partial1.html';
@@ -170,6 +171,10 @@ this.showText = function(){
   this.testdisplay = true;
 };
 
+this.showYoutube = function(){
+  this.displayYoutubePath = true;
+};
+
 
   // this.includePath = 'partials/partial1.html';
 
@@ -212,6 +217,7 @@ this.showText = function(){
           this.error = "Unauthorized";
       } else {
         this.instruments = response.data;
+        controller.showYoutube();
       }
     }.bind(this));
   }
