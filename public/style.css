@@ -1,5 +1,5 @@
 body {
-  background-color: azure;
+  background-image: url("/partials/single_instruments/images/sitebackground.png");
 
 }
 
@@ -50,4 +50,28 @@ ul {
 .muiscnotes {
   display: inline;
   float:right;
+}
+
+.cabin-font{
+  font-family: 'Cabin Condensed', sans-serif;
+}
+
+.didact-font{
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+.getstarted{
+  background-color: rgba(51,102,153,.3);
+}
+
+.leftlowercolumn {
+  background-color: rgba(102,153,204,.3);
+}
+
+.rightlowercolumn {
+  background-color: rgba(140,179,217,.3);
+}
+
+.instrumentlist{
+  background-color: rgba(140,179,217,.3);
 }
